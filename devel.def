@@ -1,0 +1,43 @@
+Bootstrap: docker
+From: ubuntu:20.04
+
+%post
+
+  apt update
+
+  # set timezone in a non-interactive way
+  TZ=Europe/Dublin DEBIAN_FRONTEND=noninteractive apt install tzdata
+  ln -fs /usr/share/zoneinfo/Europe/Dublin /etc/localtime
+  dpkg-reconfigure --frontend noninteractive tzdata
+
+  apt install -y curl wget git
+  apt install -y build-essential cmake
+
+  # install nodejs and yarn
+  curl -sL https://deb.nodesource.com/setup_12.x | bash -
+  apt install -y nodejs
+  npm install -g yarn
+
+  # print versions for debugging
+  python2 --version
+  python3 --version
+  node --version
+  yarn --version
+  gcc --version
+  g++ --version
+  make --version
+  cmake --version
+
+%labels
+
+  Author Saravanabalagi Ramachandran
+  Email saravanabalagi@hotmail.com
+  Repo https://github.com/saravanabalagi/singularity_devel
+  Version v0.1
+
+%help
+
+  This is an devel singularity container for building various tools.
+  Comes with curl, wget, build-essential, git, nodejs, cmake and python.
+  Python is not directly accessible using 'python', use 'python2' or 'python3' instead.
+  For more details or for filing issues, please visit https://github.com/saravanabalagi/singularity_devel
