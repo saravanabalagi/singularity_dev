@@ -1,0 +1,17 @@
+Bootstrap: localimage
+From: dev.sif
+
+%post
+
+  apt update
+  apt install -y build-essential wget
+
+  # update cmake
+  export CMAKE_VERSION=3.22.2 \
+    CMAKE_INSTALL_DIR=/opt/cmake
+  wget -O cmake-install.sh https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/cmake-$CMAKE_VERSION-linux-x86_64.sh && \
+    mkdir $CMAKE_INSTALL_DIR && \
+    sh cmake-install.sh --skip-license --prefix=$CMAKE_INSTALL_DIR && \
+    ln -sf $CMAKE_INSTALL_DIR/bin/cmake /usr/bin/cmake && \
+    rm cmake-install.sh && \
+    cmake --version
