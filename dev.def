@@ -1,0 +1,32 @@
+Bootstrap: localimage
+From: py38.sif
+
+%post
+
+export DEBIAN_FRONTEND=noninteractive
+
+apt update && apt install -y \
+  build-essential \
+  ffmpeg \
+  parallel \
+  pv \
+  jq \
+  bc \
+  zip \
+  unzip \
+  unrar \
+  curl \
+  wget \
+  git \
+  cmake \
+  imagemagick
+
+# install nodejs and yarn
+curl -sL https://deb.nodesource.com/setup_14.x | bash -
+apt install -y nodejs
+npm install -g yarn
+
+# in older ubuntu distros, nodejs will install python2 and replaces the symlink
+ln -sf /usr/bin/python3.8 /usr/bin/python3 && \
+  ln -sf /usr/bin/python3 /usr/bin/python && \
+  python --version

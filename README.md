@@ -1,8 +1,3 @@
-# Singularity Devel
+# Singularity Dev
 
-Singularity container with essential tools for building libs.
-
-### Notes
-
-- Comes with curl, wget, build-essential, git, nodejs, cmake and python.
-- Python is not directly accessible using 'python', use 'python2' or 'python3' instead.
+Singularity container definitions with essential tools for development. Build from [py38.sif](https://github.com/saravanabalagi/singularity_python) optionally with cuda/cudnn
