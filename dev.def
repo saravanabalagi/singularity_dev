@@ -22,7 +22,7 @@ apt update && apt install -y \
   imagemagick
 
 # install nodejs and yarn
-curl -sL https://deb.nodesource.com/setup_14.x | bash -
+curl -sL https://deb.nodesource.com/setup_18.x | bash -
 apt install -y nodejs
 npm install -g yarn
 
